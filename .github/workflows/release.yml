@@ -27,9 +27,8 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Set APP_VERSION env
-      run: echo APP_VERSION=$(echo ${GITHUB_REF} | rev | cut -d'/' -f 1 | rev ) >> ${GITHUB_ENV}
-    - name: Set BUILD_TIME env
-      run: echo BUILD_TIME=$(date) >> ${GITHUB_ENV}
+      run: echo APP_VERSION=$(echo hello)
+      
     - name: Environment Printer
       uses: managedkaos/print-env@v1.0
 
@@ -40,4 +39,3 @@ jobs:
         goarch: ${{ matrix.goarch }}
         project_path: "${{ env.CMD_PATH }}"
         build_flags: -v
-        ldflags: -X "main.appVersion=${{ env.APP_VERSION }}" -X "main.buildTime=${{ env.BUILD_TIME }}" -X main.gitCommit=${{ github.sha }} -X main.gitRef=${{ github.ref }}
