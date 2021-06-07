@@ -14,7 +14,7 @@ builds:
       - -s -w -X main.Version={{.Tag}}
 
 archives:
-  - name_template: '{{ .ProjectName }}_{{ .Tag }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+  - name_template: '{{ .ProjectName }}_{{ .Tag }}_{{ .Os }}_{{ .Arch }}'
     format_overrides:
       - goos: 'windows'
         format: 'zip'
