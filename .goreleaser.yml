@@ -16,13 +16,22 @@ builds:
       goarch: [ '386', 'amd64', 'arm32', 'arm64' ]
       env:
         - CGO_ENABLED=0
+
 archives:
-  - replacements:
+  - name_template: '{{ .ProjectName }}_{{ .Tag }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+    format_overrides:
+      - goos: 'windows'
+        format: 'zip'
+    wrap_in_directory: true
+    files:
+      - README.md
+    replacements:
       darwin: Darwin
       linux: Linux
       windows: Windows
       386: x86_32
       amd64: x86_64
+
 checksum:
   name_template: 'checksums.txt'
 snapshot:
